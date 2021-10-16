@@ -14,7 +14,7 @@ class TextUserInterface
     name = gets.chomp
     self.player = User.new(name)
     self.dealer = Dealer.new
-    self.cards = PlayingCards.new
+    self.cards = Deck.new
   end
 
   def to_deal_one_card_player
@@ -25,20 +25,31 @@ class TextUserInterface
     dealer.add_cards(cards.deck_of_cards.pop)
   end
 
-  def to_deal_cards_start
-    2.times { to_deal_one_card_player && to_deal_one_card_dealer }
+  def beginning_of_game
+    if player.stack || dealer.stack != 0 # REVIEW
+      2.times { to_deal_one_card_player && to_deal_one_card_dealer }
+      player.bet && dealer.bet
+    else
+      puts 'gggg'
+    end
   end
 
-  # def show_face_of_cards
-  #  player.hand.each { |cards| puts "#{cards}" }
-  # end
+  def counter_hand
+    player.sum_hand(player.hand)
+    dealer.sum_hand(dealer.hand)
+  end
 
-  # def show_back_of_card
-  #  dealer.hand.each { |cards| puts "**" }
-  # end
+  def show_face_of_cards_player
+    puts "#{player.hand.join(' ')} - #{player.sum} points <- #{player.name}."
+  end
+
+  def show_face_of_cards_dealer
+    puts "#{dealer.hand.join(' ')} - #{dealer.sum} points <- Dealer."
+  end
 
   def seed
     create_player
-    to_deal_cards_start
+    beginning_of_game
+    counter_hand
   end
 end
