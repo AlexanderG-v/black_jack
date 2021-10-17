@@ -6,11 +6,12 @@ require_relative 'user'
 require_relative 'dealer'
 require_relative 'tui'
 
-puts 'This is a blackjack game!'
-puts '========================='
+puts 'Это игра в Black Jack!'
+puts '======================'
 
-# tui = TextUserInterface.new
-# tui.create_player
-# tui.to_deal_the_cards
-# tui.show_face_of_cards
-# tui.show_back_of_card
+tui = TextUserInterface.new
+tui.create_player
+tui.beginning_of_game
+tui.counter_hand
+tui.show_face_of_cards_player
+tui.item_selection

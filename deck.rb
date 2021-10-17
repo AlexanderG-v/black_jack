@@ -11,6 +11,8 @@ class Deck
     @discard_pile = []
   end
 
+  protected
+
   def making_deck_of_cards
     deck = []
     DENOMINATION_CARD.each do |value|
