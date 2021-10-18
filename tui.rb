@@ -12,13 +12,19 @@ class TextUserInterface
     @player = player
     @dealer = Dealer.new
     @cards = Deck.new
+    create_player
   end
 
+  private
+
   def create_player
+    puts 'Это игра в Black Jack!'
+    puts '======================'
     print 'Введите Ваше имя: '
     name = gets.chomp
     self.player = User.new(name)
     puts "Привет #{name}! Игра начинается!"
+    beginning_of_game
   rescue RuntimeError
     puts 'У игрока должно быть имя! Попробуй еще раз.'
     retry
@@ -65,7 +71,6 @@ class TextUserInterface
     end
     show_face_of_cards_dealer
     counting_results
-    sleep(2)
   end
 
   def add_a_card
@@ -113,8 +118,6 @@ class TextUserInterface
     puts 'Такой команты нет! Повторите еще раз.'
     retry
   end
-
-  private
 
   def show_stack
     puts "У Вас в банке #{player.stack}$. В банке дилера #{dealer.stack}$."
