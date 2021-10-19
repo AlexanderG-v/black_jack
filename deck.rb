@@ -16,7 +16,7 @@ class Deck
   def making_deck_of_cards
     deck = []
     DENOMINATION_CARD.each do |value|
-      SUIT_CARD.each { |suit| deck.push(value + suit) }
+      SUIT_CARD.each { |suit| deck << Card.new(value, suit) }
     end
     deck.shuffle!
   end
