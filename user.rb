@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class User < Players
-  attr_accessor :name
+  attr_reader :name
 
   def initialize(name)
     super
